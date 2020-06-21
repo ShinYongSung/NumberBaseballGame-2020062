@@ -1,22 +1,19 @@
 package my.shin.numberbaseballgame_2020062.adapters
 
 import android.content.Context
-import android.content.Intent
-import android.icu.text.Transliterator
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import my.shin.numberbaseballgame_2020062.R
+import my.shin.numberbaseballgame_2020062.datas.Chat
 
-class ChatAdapter(val mContext:Context, val resId:Int, val mList:List<ChatAdapter>):
+class ChatAdapter(val mContext:Context,
+                  val resId:Int,
+                  val mList: ArrayList<Chat>) : ArrayAdapter<Chat>(mContext,resId,mList) {
 
-    ArrayAdapter <ChatAdapter>(mContext,resId,mList) {
 
     val inf = LayoutInflater.from(mContext)
 
