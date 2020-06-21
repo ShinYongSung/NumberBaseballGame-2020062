@@ -1,6 +1,7 @@
 package my.shin.numberbaseballgame_2020062
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import my.shin.numberbaseballgame_2020062.adapters.ChatAdapter
@@ -46,13 +47,28 @@ class MainActivity : BaseActivity() {
 
             numberEdt.setText("")
 
+//            입력한 값을 가지고 ?S ?B 인지 판단해서 답장하기
 
+            checkUserInputStrikeAndBall(inputNum)
         }
-
     }
+
+    fun checkUserInputStrikeAndBall(input : String){
+        val number = input.toInt() //"265" => 265
+
+//        세자리 숫자를 => 세칸의 배열로 분리. 256 => 2,5,6
+        val numArr = ArrayList<Int>()
+
+        numArr.add(number / 100)  // 100의 자리 2 : 256 / 100 = 2.56 (int는 자동적으로 정수로 나타냄)
+        numArr.add(number / 10 % 10)  // 10의 자리 5 : 256 /10 % 10 = 5
+        numArr.add(number % 10)  // 1의 자리 6 : 256 % 10 = 6
+    }
+}
 
     override fun setValues() {
         makeQuestionNum()
+
+        for (num in cpuNumList) {Log.d("문제 출제", num.tostring())
 
         chatList.add(Chat("CPU","숫자 야구게임에 오신것을 환영합니다."))
         chatList.add(Chat("CPU","세자리 숫자를 맞춰주세요."))
