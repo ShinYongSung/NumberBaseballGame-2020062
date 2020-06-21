@@ -83,7 +83,6 @@ class MainActivity : BaseActivity() {
                     }
 
                     else{
-//                        숫자는 같지만 위치가 다르면 B 하나 더 찾았다 바보 멍충이 업곰지
                     }
 
                 }
@@ -124,12 +123,9 @@ class MainActivity : BaseActivity() {
 
     fun makeQuestionNum() {
 
-//        세자리 숫자를 만든다 => 한자리씩 배열에 저장. ex 741=> 7,4,1
 
         for (i in 0..2) {
-//            조건에 맞는 숫자가 나오면 배열에 대입.
-//            조건에 안맞는 숫자가 나오면 다시 뽑자.
-//            조건에 맞는 숫자가 뽑힐때 까지 계속 뽑자.
+
 
             while (true) {
 
@@ -137,11 +133,6 @@ class MainActivity : BaseActivity() {
 //                0*9+1<= (Math.random()).toInt() Ex. 9.8=>9 < 1*9+1
 //                우리가 원하는 수자 : 0 제외. 1~9 정수
                 val randomNum = (Math.random()*9 +1).toInt()
-
-//                중복된 숫자면 안됨. => 문제 배열을 보고 같은 숫자가 있는지?
-//                있다면 사용 불가 (중복)
-
-//                일단 써도 된다고 했다가 => 검사결과 같은게 있다면 => 쓰면 안된다고.
 
                 var duplCheckResult = true
 
