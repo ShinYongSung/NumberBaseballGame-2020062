@@ -9,6 +9,9 @@ import my.shin.numberbaseballgame_2020062.datas.Chat
 
 class MainActivity : BaseActivity() {
 
+//    몇번이나 답안을 입력했는지 저장할 변수
+    var inputTryCount = 0
+
 //    문제로 나온 숫자를 담는 배열
 
     val cpuNumList = ArratyList<Int>
@@ -25,6 +28,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun setupEvents() {
+
 
         inputBtn.setOnClickListener {
 //            사용자 입력값을 받아오자
@@ -54,6 +58,10 @@ class MainActivity : BaseActivity() {
     }
 
     fun checkUserInputStrikeAndBall(input : String){
+
+//        시도 횟수를 하나 증가
+        inputTryCount++
+
         val number = input.toInt() //"265" => 265
 
 //        세자리 숫자를 => 세칸의 배열로 분리. 256 => 2,5,6
@@ -99,6 +107,13 @@ class MainActivity : BaseActivity() {
         if (strikeCount ==3) {
             chatList.add(Chat("CPU","축하합니다!!"))
 
+//            몇번만에 맞췃는지 채팅으로 표기
+            chatList.add(Chat("CPU","${inputTryCount}회만에 맞췄습니다."))
+
+//            내용 새로 고침
+
+            mChatAdapter.notifyDataSetChanged()
+
             Toast.makeText(mContext,"게임을 종료합니다.",Toast.LENGTH_SHORT).show()
 
 //            입력도 못하도록 막자
@@ -111,7 +126,7 @@ class MainActivity : BaseActivity() {
 
     override fun setValues() {
 
-//
+
         makeQuestionNum()
 
         for (num in cpuNumList) {Log.d("문제 출제", num.tostring())
