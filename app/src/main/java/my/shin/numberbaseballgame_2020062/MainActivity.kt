@@ -27,27 +27,19 @@ class MainActivity : BaseActivity() {
     override fun setupEvents() {
 
         inputBtn.setOnClickListener {
-//            사용자 입력값을 받아오자
             val inputNum = numberEdt.text.toString()
 
-//            세자리 일때만  OK
             if (inputNum.length!=3){
                 Toast.makeText(mContext,"세자리 숫자만 입력  가능합니다.",Toast.LENGTH_SHORT).show()
-//                이벤트 강제종료
+
                 return@setOnClickListener
             }
 
-//            입력값이 3자리이 보증됨
-//            사용자가 한 말로 입력 처리 => 채팅 내역으로 추가
             chatList.add(Chat("ME",inputNum))
 
             mChatAdapter.notifyDataSetChanged()
 
-//            한번 숫자 입력시 입력 칸 비워주기
-
             numberEdt.setText("")
-
-//            입력한 값을 가지고 ?S ?B 인지 판단해서 답장하기
 
             checkUserInputStrikeAndBall(inputNum)
         }
@@ -56,19 +48,16 @@ class MainActivity : BaseActivity() {
     fun checkUserInputStrikeAndBall(input : String){
         val number = input.toInt() //"265" => 265
 
-//        세자리 숫자를 => 세칸의 배열로 분리. 256 => 2,5,6
         val numArr = ArrayList<Int>()
 
-        numArr.add(number / 100)  // 100의 자리 2 : 256 / 100 = 2.56 (int는 자동적으로 정수로 나타냄)
-        numArr.add(number / 10 % 10)  // 10의 자리 5 : 256 /10 % 10 = 5
-        numArr.add(number % 10)  // 1의 자리 6 : 256 % 10 = 6
+        numArr.add(number / 100)
+        numArr.add(number / 10 % 10)
+        numArr.add(number % 10)
 
-//        찾은 S?B 갯수를 저장할 변수
         var strikeCount = 0
         var ballCount = 0
 
 
-//        내 입력값을 돌아주는 반복 : i가 내 숫자들 담당
         for (i in numArr.indices) {
 
 
@@ -90,7 +79,6 @@ class MainActivity : BaseActivity() {
             }
 
         }
-//        ?S ? B 판단이 모두 끝남. 결과가 cPU 가 답장
         chatList.add(Chat("CPU","${strikeCount}S ${ballCount}B 입니다."))
 
         mChatAdapter.notifyDataSetChanged()
@@ -130,26 +118,20 @@ class MainActivity : BaseActivity() {
             while (true) {
 
 
-//                0*9+1<= (Math.random()).toInt() Ex. 9.8=>9 < 1*9+1
-//                우리가 원하는 수자 : 0 제외. 1~9 정수
                 val randomNum = (Math.random()*9 +1).toInt()
 
                 var duplCheckResult = true
 
                 for (num in cpuNumList) {
                     if (num == randomNum) {
-//                        문제에 같은 숫자가 있다! => 사용하면 안된다!
                         duplCheckResult = false
 
                     }
                 }
-//                랜덤숫자가 중복검사를 통과 했는지?
 
                 if (duplCheckResult) {
 
-//                    써도 되는 숫자니까 출제 숫자에 등록.
                     cpuNumList.add(randomNum)
-//                    무한 반복을 깨고 다음 숫자를 뽑으로 이동.
                     break
                 }
 
