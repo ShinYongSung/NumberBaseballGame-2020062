@@ -110,6 +110,8 @@ class MainActivity : BaseActivity() {
 }
 
     override fun setValues() {
+
+//
         makeQuestionNum()
 
         for (num in cpuNumList) {Log.d("문제 출제", num.tostring())
