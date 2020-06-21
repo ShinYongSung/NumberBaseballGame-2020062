@@ -94,6 +94,18 @@ class MainActivity : BaseActivity() {
 //        ?S ? B 판단이 모두 끝남. 결과가 cPU 가 답장
         chatList.add(Chat("CPU","${strikeCount}S ${ballCount}B 입니다."))
 
+        mChatAdapter.notifyDataSetChanged()
+
+        if (strikeCount ==3) {
+            chatList.add(Chat("CPU","축하합니다!!"))
+
+            Toast.makeText(mContext,"게임을 종료합니다.",Toast.LENGTH_SHORT).show()
+
+//            입력도 못하도록 막자
+            numberEdt.isEnabled = false
+            inputBtn.isEnabled = false
+        }
+
     }
 }
 
